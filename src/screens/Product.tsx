@@ -17,17 +17,7 @@ const Product = () => {
   const handleModelClick = async (modelImage: string) => {
     setDisplayedImage(modelImage)
     try {
-      // Assuming your API URL is /api/superimpose and returns the superimposed image URL
-      const response = await fetch('https://your-api-url/superimpose', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          productImage: product.image,
-          modelImage,
-        }),
-      });
-      const data = await response.json();
-      setDisplayedImage(data.superimposedImageUrl);
+      
     } catch (error) {
       console.error("Error fetching superimposed image:", error);
     }
