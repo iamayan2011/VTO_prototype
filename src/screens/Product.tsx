@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useParams } from 'react-router-dom';
 
 import { products, modelImages } from '../constants';
@@ -7,15 +7,57 @@ const Product = () => {
   const { productId } = useParams<{ productId: string }>();
   const product = products.find((p) => p.id === parseInt(productId || '', 10));
 
+  const [displayedImage, setDisplayedImage] = useState(product?.image);
+
+
   if (!product) {
     return <p>Product not found</p>;
   }
 
+  const handleModelClick = async (modelImage: string) => {
+    setDisplayedImage(modelImage)
+    try {
+      // Assuming your API URL is /api/superimpose and returns the superimposed image URL
+      const response = await fetch('https://your-api-url/superimpose', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          productImage: product.image,
+          modelImage,
+        }),
+      });
+      const data = await response.json();
+      setDisplayedImage(data.superimposedImageUrl);
+    } catch (error) {
+      console.error("Error fetching superimposed image:", error);
+    }
+  };
+
   return (
-    <div className="p-4">
-      <img src={product.image} alt={product.name} className=" h-64 object-cover]]" />
+<div className="p-4">
+      {/* Main Product Image */}
+      <img src={displayedImage} alt={product.name} className="h-64 object-cover" />
       <h1 className="text-2xl font-bold mt-4">{product.name}</h1>
       <p className="text-xl font-semibold">${product.price}</p>
+
+      
+
+      {/* Model Images */}
+      <div className="flex space-x-2 mt-4">
+        <img src={product?.image} alt={product.name} 
+        className="w-20 h-20 object-cover cursor-pointer"
+        onClick={() => handleModelClick(product?.image)}
+        />
+        {modelImages.map((modelImage, index) => (
+          <img
+            key={index}
+            src={modelImage.image}
+            alt={`Model ${index + 1}`}
+            className="w-20 h-20 object-cover cursor-pointer"
+            onClick={() => handleModelClick(modelImage.image)}
+          />
+        ))}
+      </div>
     </div>
   );
 };

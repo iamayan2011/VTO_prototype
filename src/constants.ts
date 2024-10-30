@@ -5,6 +5,6 @@ export const products = [
 ];
 
 export const modelImages = [
-  { id: 1, name: "Male 1",  image:"/modelM1.png"},
-  { id: 2, name: "Male 2", image:"/modelM2.png"}
+  { id: 1, name: "Male 1",  image:"/modelImg/modelM1.png"},
+  { id: 2, name: "Male 2", image:"/modelImg/modelM2.png"}
 ];
