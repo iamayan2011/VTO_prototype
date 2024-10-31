@@ -2,11 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { products } from '../constants';
-
+import Navbar from '../components/Navbar';
 
 
 const Home = () => {
   return (
+    <>
+    <Navbar></Navbar>
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
       {products.map((product) => (
         <Link to={`/product/${product.id}`} key={product.id} className="border rounded shadow p-4">
@@ -16,6 +18,7 @@ const Home = () => {
         </Link>
       ))}
     </div>
+    </>
   );
 };
 
