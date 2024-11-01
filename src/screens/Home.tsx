@@ -3,12 +3,15 @@ import { Link } from 'react-router-dom';
 
 import { products } from '../constants';
 import Navbar from '../components/Navbar';
+import Carousel from '../components/Carousel';
 
 
 const Home = () => {
   return (
-    <>
+    <div className=''>
     <Navbar></Navbar>
+    <Carousel></Carousel>
+
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
       {products.map((product) => (
         <Link to={`/product/${product.id}`} key={product.id} className="border rounded shadow p-4">
@@ -18,7 +21,7 @@ const Home = () => {
         </Link>
       ))}
     </div>
-    </>
+    </div>
   );
 };
 

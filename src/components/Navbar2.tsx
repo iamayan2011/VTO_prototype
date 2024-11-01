@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
-// const Navbar = () => {
+// const Navbar2 = () => {
 //   return (
 //     <div className="flex space-x-2">
 //       <Link to="/">Home</Link>
@@ -11,30 +11,12 @@ import { Link } from "react-router-dom";
 //   );
 // };
 
-const Navbar: React.FC = () => {
+const Navbar2: React.FC = () => {
 
-    const [scrolled, setScrolled] = useState(false);
-
-    useEffect(() => {
-        const onScroll = () => {
-            if(window.scrollY > 50){
-                setScrolled(true);
-            } else {
-                setScrolled(false);
-            }
-        }
-
-        window.addEventListener("scroll", onScroll);
-
-        return () => window.removeEventListener("scroll", onScroll);
-    })
+    
   return (
     
-    <div className={`navbar navbarAnimated rounded-2xl fixed top-0 transition-all duration-300 ease-in-out ${
-        scrolled
-          ? "scrolled shadow-2xl mt-5 w-full"
-          : "w-full mt-0"
-      }`}>
+    <div className={`navbar navbar2`}>
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -111,8 +93,8 @@ const Navbar: React.FC = () => {
             <Link to="/demo2">VTO-2</Link>
           </li>
           <li>
-            <Link to="#">About Us</Link>
-          </li>
+              <Link to="#">About Us</Link>
+            </li>
         </ul>
       </div>
       <div className="navbar-end">
@@ -124,4 +106,4 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default Navbar;
+export default Navbar2;
